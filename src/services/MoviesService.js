@@ -8,6 +8,10 @@ class MoviesService {
     getAll() {
         return axios.get('movies');
     }
+
+    get(id) {
+        return axios.get(`movies/${id}`);
+    }
 }
 
 export const moviesService = new MoviesService();
