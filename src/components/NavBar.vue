@@ -1,7 +1,6 @@
 <template>
     <!-- Image and text -->
     <nav class="navbar navbar-dark bg-primary">
-
         <router-link class="navbar-brand" :to="{ name: 'movies' }">
             Movies
         </router-link>
