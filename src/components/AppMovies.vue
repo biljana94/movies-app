@@ -4,10 +4,13 @@
         filteredMovies je computed properti koji pozivamo kao svaki drugi properti ako treba da ga pozovemo --> 
         <template v-if="filteredMovies.length">
             <!--uzimamo filmo iz filteredMovies-->
+            <h4 class="selected">Selected Movies: {{selectedMovies}}</h4>
             <div class="" v-for="(movie, index) in filteredMovies" :key="index">
                 <!--ispisujemo filmove ciji je ispis u MovieRow.vue komponenti, 
-                zato moramo bind-ovati movie *:movie(ono sto smo prosledili kroz props)="movie(movie iz v-for petlje)"*-->
-                <movie-row :movie="movie"></movie-row>
+                zato moramo bind-ovati movie *:movie(ono sto smo prosledili kroz props)="movie(movie iz v-for petlje)"*;
+                @selected="selectedMovie(movie) na selected se okida metoda iz child komponente jer smo tamo napisali button a poziva
+                se metoda iz ove komponente koja samo broji selektovane filmove-->
+                <movie-row :movie="movie" @selected="selectedMovie(movie)" :selected="selected"></movie-row>
             </div>
         </template>
 
@@ -35,8 +38,9 @@ export default {
     data () {
         return {
             movies: [],
-
             term: '',
+            selected: false, //u childu(MovieRow.vue) menjamo selected na true
+            selectedMovies: 0,
 
         }
     },
@@ -66,6 +70,12 @@ export default {
             return this.movies.filter(movie =>  movie.title.toLowerCase().includes(this.term.toLowerCase()));
         }
     },
+
+    methods: {
+        selectedMovie(movie) {
+            this.selectedMovies++;
+        }
+    },
 }
 </script>
 
@@ -83,5 +93,12 @@ export default {
     display: block;
     margin: 0 auto;
     border: none;
+}
+
+.selected {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 1rem;
 }
 </style>

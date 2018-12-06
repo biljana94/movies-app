@@ -1,12 +1,14 @@
 <template>
     <div class="container">
     
-    <h5>{{ movie.title }}</h5>
+    <h2>{{ movie.title }}</h2>
     <p>Director: {{ movie.director }}</p>
-    <img class="img-thumbnail" :src="movie.imageUrl">
+    <img :src="movie.imageUrl">
     <p>Year: {{ movie.releaseDate }}</p>
     <p>Genre: {{ movie.genre }}</p>
     <p>Duration: {{ movie.duration }}</p>
+    <!--dugme za selektovanje filmova, @click.once="selectMovie" (samo jednom moze da se klikne, i ova metoda selectMovie emituje metodu iz parent komponente-->
+    <button @click.once="selectMovie" type="button" class="btn btn-primary">Select</button>
 
     </div>
 </template>
@@ -15,21 +17,35 @@
 <script>
 export default {
     //preko propsa smo prosledili iz parent komponente (AppMovies.vue) svaki film posebno
-    props: ['movie'],
+    // props: ['movie', 'selected'],
+    props: {
+        movie: { type: Object },
+        selected: { type: Boolean }, //kroz props smo prosledili selected properti koji je false
+    },
+
+    methods: {
+        selectMovie() {
+            this.selected = true; //kad se klikne na dugme selected se menja u true
+            this.$emit('selected', this.movie); //i emituje se metoda iz parent komponente na 'selected'
+        }
+    },
 }
 </script>
 
 <style>
 .container{
     width: 350px;
-    height: 400px;
+    height: 500px;
     border: 1px solid #007bff;
     border-radius: 0.5rem;
     margin: 1rem;
+    padding: 10px;
+    align-content: center;
 }
 
 .container img {
     width: 200px;
     height: 200px;
+    margin: 0.5rem 0;
 }
 </style>
