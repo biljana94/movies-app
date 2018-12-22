@@ -1,16 +1,16 @@
-import axios from 'axios';
+import http from './http-service.js';
 
 class MoviesService {
-    constructor() {
-        axios.defaults.baseURL = 'http://localhost:3000/api/';
-    }
 
-    getAll() {
-        return axios.get('movies');
+    //default vrednosti za take i skip parametre
+    getAll(title = '', take = 10, skip = 5) {
+        return http.get('movies', { params: { title, take, skip } })
+            .then(({ data }) => data);
     }
 
     get(id) {
-        return axios.get(`movies/${id}`);
+        return http.get(`movies/${id}`)
+            .then(response => response);
     }
 }
 

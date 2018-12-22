@@ -14,3 +14,5 @@ new Vue({
 //koristimo ga nad window objektom koji je dostupan u svakoj komponenti
 //da smo hteli da ga pravimo ispocetka morali bi napraviti novi JS fajl i u njega instancirati vue...
 window.EventHub = new Vue();
+
+window.EventBus = new Vue();

@@ -22,6 +22,6 @@ export default {
 
 <style>
 .navbar {
-    border-radius: 0 0 0.5rem 0.5rem; /*ne radi ?????*/
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 </style>
