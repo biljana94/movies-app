@@ -60,7 +60,7 @@ export default {
         moviesService.getAll()
             .then(response => {
                 next(vm => {
-                    console.log(response)
+                    // console.log(response)
                     vm.movies = response;
                     // vm.total = response.total;
                 })

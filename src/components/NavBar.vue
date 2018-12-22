@@ -4,6 +4,9 @@
         <router-link class="navbar-brand" :to="{ name: 'movies' }">
             Movies
         </router-link>
+        <router-link class="navbar-brand" :to="{ name: 'add' }">
+            Add Movie
+        </router-link>
         <movie-search></movie-search>
     </nav>
 </template>
